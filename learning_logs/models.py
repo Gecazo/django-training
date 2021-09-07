@@ -8,4 +8,17 @@ class Topic(models.Model):
     def __str__(self):
         """Returns text representation of the model"""
         return self.text
-    
+
+class Entry(models.Model):
+    """Specific information on the progress of science"""
+
+    topic = models.ForeignKey(Topic, on_delete=models.CASECADE)
+    text = models.TextField()
+    date_added = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name_plural = 'entries'
+
+    def __str__(self):
+        """Returns representation of a model in text string"""
+        return f"{self.text[:50]}..."
